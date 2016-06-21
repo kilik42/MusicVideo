@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
 
     
-    func didLoadData(result:String){
+    func didLoadData (result:String){
         print(result)
     }
     
