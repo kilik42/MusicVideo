@@ -21,15 +21,19 @@ class ViewController: UIViewController {
         completion: didLoadData)
     }
 
+    
+    func didLoadData(result:String){
+        print(result)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     
-    func didLoadData(result:String){
-        print(result)
-    }
+   
 
 }
 
