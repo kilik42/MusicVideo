@@ -130,16 +130,35 @@ class Videos {
         }
         
         //video genre
-        
+        if let genre = data["category"] as? JSONDictionary,
+            attributes = genre["attributes"] as? JSONDictionary,
+            vGenre = attributes["label"] as? String {
+             self._vGenre =  vGenre
+        }else {
+            _vGenre = ""
+        }
         
         
         //video link to itunes
         
-        
+        if let linkToItunes = data["link"] as? JSONArray,
+                link  = linkToItunes[1] as? JSONDictionary,
+                 attributes = link ["attributes"] as? JSONDictionary,
+            vLinkToiTunes = attributes["href"] as? String {
+            self._vLinkToitunes = vLinkToiTunes
+        }else {
+            _vLinkToitunes  = ""
+        }
         
         //video release date
         
-        
+        if let releaseDate = data["im:releaseDate"] as? JSONDictionary,
+            attributes = releaseDate["attributes"] as? JSONDictionary,
+            vReleaseDte = attributes["label"] as? String {
+            self._vReleaseDte = vReleaseDte
+        }else{
+            _vReleaseDte = ""
+        }
         
     }
     
