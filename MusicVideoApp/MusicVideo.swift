@@ -17,6 +17,16 @@ class Videos {
     private var _vImageUrl: String
     private var _vVideoUrl: String
     
+    private var _vRights:String
+    private var _vPrice:String
+    private var _vArtist:String
+    
+    private var _vImid:String
+    private var _vGenre: String
+    private var _vLinkToitunes: String
+    private var _vReleaseDte: String
+    
+    
     var vName: String {
         return _vName
     }
@@ -29,7 +39,33 @@ class Videos {
         return _vVideoUrl
     }
     
+    var vRights: String{
+        return _vRights
+    }
     
+    var vPrice:String{
+        return _vPrice
+    }
+    
+    var vArtist: String{
+        return _vArtist
+    }
+    
+    var vImid: String{
+        return _vImid
+    }
+    
+    var vGenre: String{
+        return _vGenre
+    }
+    
+    var vLinkToiTunes: String{
+        return _vLinkToitunes
+    }
+    
+    var vReleaseDte: String{
+        return _vReleaseDte
+    }
     init(data: JSONDictionary) {
         //video name
         if let name = data["im:name"] as? JSONDictionary,
@@ -58,6 +94,52 @@ class Videos {
         } else{
             _vVideoUrl = ""
         }
+        
+        //video rights
+        if let rights = data["rights"] as? JSONDictionary,
+            vRights = rights["label"] as? String{
+            self._vRights = vRights
+        } else {
+            _vRights = " "
+        }
+        
+        //video price
+        if let price = data["im:price"] as? JSONDictionary,
+            vPrice = price["label"] as? String {
+                self._vPrice = vPrice
+        }else{
+            _vPrice = ""
+        }
+        
+        
+        //video artist
+        if let artist = data["im:artist"] as? JSONDictionary,
+            vArtist = artist["label"] as? String{
+            self._vArtist = vArtist
+        }else{
+            _vArtist = ""
+        }
+        
+        //video imid
+        
+        if let imid = data["id"] as? JSONDictionary,
+            vImid = imid["label"] as? String {
+            self._vImid = vImid
+        }else {
+            _vImid = ""
+        }
+        
+        //video genre
+        
+        
+        
+        //video link to itunes
+        
+        
+        
+        //video release date
+        
+        
         
     }
     
