@@ -27,6 +27,11 @@ class Videos {
     private var _vReleaseDte: String
     
     
+    //this variable gets created from the UI
+    var vImageData:NSData?
+    
+    
+    //creating my getters
     var vName: String {
         return _vName
     }
@@ -123,7 +128,8 @@ class Videos {
         //video imid
         
         if let imid = data["id"] as? JSONDictionary,
-            vImid = imid["label"] as? String {
+            vid = imid["attributes"] as? JSONDictionary,
+            vImid = vid["im:id"] as? String {
             self._vImid = vImid
         }else {
             _vImid = ""
@@ -132,7 +138,7 @@ class Videos {
         //video genre
         if let genre = data["category"] as? JSONDictionary,
             attributes = genre["attributes"] as? JSONDictionary,
-            vGenre = attributes["label"] as? String {
+            vGenre = attributes["term"] as? String {
              self._vGenre =  vGenre
         }else {
             _vGenre = ""
@@ -141,10 +147,9 @@ class Videos {
         
         //video link to itunes
         
-        if let linkToItunes = data["link"] as? JSONArray,
-                link  = linkToItunes[1] as? JSONDictionary,
-                 attributes = link ["attributes"] as? JSONDictionary,
-            vLinkToiTunes = attributes["href"] as? String {
+        if let release2 = data["id"] as? JSONDictionary,
+           vLinkToiTunes = release2["label"] as? String
+        {
             self._vLinkToitunes = vLinkToiTunes
         }else {
             _vLinkToitunes  = ""
