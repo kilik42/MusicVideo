@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
     
     var videos = [Videos]()
     
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var displayLabel: UILabel!
     
     
@@ -42,7 +43,7 @@ class ViewController: UIViewController {
             print("\(index) name = \(item.vName)")
         }
        
-        
+        tableView.reloadData()
     }
     
     
@@ -71,6 +72,28 @@ class ViewController: UIViewController {
     {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+    }
+    
+   
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        
+        let video = videos[indexPath.row]
+        
+        cell.textLabel?.text = ("\(indexPath.row + 1)")
+        
+        cell.detailTextLabel?.text = video.vName
+        
+        return cell
+    }
+
    
 
 }
